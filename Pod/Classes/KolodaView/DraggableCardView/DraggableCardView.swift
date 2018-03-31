@@ -272,6 +272,23 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
             resetViewPositionAndTransformations()
         }
     }
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer else { return true }
+        let velocity = panGestureRecognizer.velocity(in: self)
+        var shouldSimultaneously = true
+        if canDragVertically && canDragHorizontally {
+            shouldSimultaneously = true
+        } else if !canDragVertically && !canDragHorizontally {
+            shouldSimultaneously = false
+        } else if canDragVertically {
+            shouldSimultaneously = fabs(velocity.x) < fabs(velocity.y)
+        } else if canDragHorizontally {
+            shouldSimultaneously = fabs(velocity.x) > fabs(velocity.y)
+        }
+        
+        return shouldSimultaneously
+    }
     
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if let touchView = touch.view, let _ = touchView as? UIControl {
