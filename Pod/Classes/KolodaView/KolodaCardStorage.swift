@@ -30,6 +30,8 @@ extension KolodaView {
         card.configure(contentView, overlayView: dataSource?.koloda(self, viewForCardOverlayAt: index))
 
         //Reconfigure drag animation constants from Koloda instance.
+        card.canDragVertically = canDragVertically
+        card.canDragHorizontally = canDragHorizontally
         if let rotationMax = self.rotationMax {
             card.rotationMax = rotationMax
         }

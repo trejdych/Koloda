@@ -90,6 +90,8 @@ open class KolodaView: UIView, DraggableCardDelegate {
     public var rotationMax: CGFloat?
     public var rotationAngle: CGFloat?
     public var scaleMin: CGFloat?
+    public var canDragHorizontally: Bool = true
+    public var canDragVertically: Bool = true
 
     public var appearanceAnimationDuration = defaultAppearanceAnimationDuration
 

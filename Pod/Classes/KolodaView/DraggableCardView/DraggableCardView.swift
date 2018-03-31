@@ -49,6 +49,8 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
     public var rotationMax = defaultRotationMax
     public var rotationAngle = defaultRotationAngle
     public var scaleMin = defaultScaleMin
+    public var canDragHorizontally: Bool = true
+    public var canDragVertically: Bool = true
     
     weak var delegate: DraggableCardDelegate? {
         didSet {
